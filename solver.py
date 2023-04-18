@@ -74,7 +74,6 @@ def solve_digits(target: int, nums: Tuple[int]) -> Optional[List[List[Tuple[int,
 def print_digits_solution(solution: List[Tuple[int, Operator, int]]):
     """Given a Digits solution, print it properly."""
     for step in solution:
-        # print(step)
         print(f"{step[0]} {step[1]} {step[2]}")
 
 
@@ -82,13 +81,22 @@ if __name__=='__main__':
     target = int(input("Enter target num: "))
     nums = [int(num) for num in input("Enter available numbers, separated by a comma (e.g. '2,3,5,...)\n").split(',')]
 
+    print("Generating solutions...", end="", flush=True)
     solutions = solve_digits(target, tuple(nums))
+    print("Done!\n")
 
-    # for solution in solutions:
-    #     print(print_digits_solution(solution))
-    #     print()
+    print(f"{len(solutions)} solutions.\n")
 
-    print(f"{len(solutions)} solutions. Presenting 10 random ones:")
+    shortest_solution = solutions[0]
+    for solution in solutions:
+        if len(solution) <= len(shortest_solution):
+            shortest_solution = solution
+    print(f"Shortest solution is {len(shortest_solution)} steps:")
+    print_digits_solution(shortest_solution)
+    print()
+
+    print("Here are 5 other solutions, chosen at random (press enter):")
+    input()
 
     for _ in range(10):
         solution = choice(solutions)
