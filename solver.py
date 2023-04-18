@@ -79,7 +79,10 @@ def print_digits_solution(solution: List[Tuple[int, Operator, int]]):
 
 
 if __name__=='__main__':
-    solutions = solve_digits(98, (2, 3, 5, 7, 10, 25))
+    target = int(input("Enter target num: "))
+    nums = [int(num) for num in input("Enter available numbers, separated by a comma (e.g. '2,3,5,...)\n").split(',')]
+
+    solutions = solve_digits(target, tuple(nums))
 
     # for solution in solutions:
     #     print(print_digits_solution(solution))
